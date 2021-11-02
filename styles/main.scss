@@ -22,7 +22,7 @@ $object-padded-width: $object-width - $object-padding * 2;
 
 * {
 	// @include block-reset;
-	@include frame(transparentize($c-fg, 0.4));
+	// @include frame(transparentize($c-fg, 0.4));
 }
 
 html {
@@ -64,7 +64,17 @@ html {
 #viewport {
 	@include fill-fixed;
 	@include block-reset;
-	overflow: visible;
+	// overflow: visible;
+	#cover {
+		// pointer-events: none !important;
+		// cursor: pointer;
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		background: adjust-color($c-bg-default, $alpha: -0.5);
+	}
 	#objects {
 		position: absolute;
 		width: 100%;
@@ -72,22 +82,36 @@ html {
 		margin: 0 auto;
 		padding: 0;
 		font-size: 0;
+		// opacity: 0.5;
 		.object {
-			// left: random(49) + 20 + vw;
-			// top: random(1) + 20 + vh;
 			padding: $object-padding;
 			background: $c-bg;
-
-			// debugging
-			// position: absolute;
-			display: inline-block;
-
 			width: $object-padded-width;
 			cursor: pointer;
+
+			// debugging
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				// left: random(49) + 20 + vw;
+				// top: random(1) + 20 + vh;
+				// position: relative;
+				// display: inline-block;
+				// vertical-align: top;
+			&.open {
+				mix-blend-mode: normal;
+				// opacity: 1;
+			}
+			&.closed {
+				mix-blend-mode: normal;
+				// opacity: 0.5;
+			}
 			.block {
 				position: relative;
 				display: inline-block;
 				vertical-align: top;
+				// pointer-events: none !important;
 				&.image {
 					// width: $object-padded-width;
 					// padding: $object-padding;
@@ -109,6 +133,15 @@ html {
 					// padding: 0 $object-padding $object-padding $object-padding;
 					// display: none;
 					// margin: 0 0 $grid-size-rel 0;
+				}
+				&.cover {
+					pointer-events: none !important;
+					position: absolute;
+					top: 0;
+					left: 0;
+					height: 100%;
+					width: 100%;
+					background: adjust-color($c-bg, $alpha: -0.5);
 				}
 			}
 		}
