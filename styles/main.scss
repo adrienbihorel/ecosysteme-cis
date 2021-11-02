@@ -1,0 +1,116 @@
+// this comment to tell node sass to compile this scss file to css
+
+@import 'lib/fonts';
+@import 'lib/utilities';
+@import 'lib/colors';
+
+$grid-size-abs: 5px;
+$grid-size-rel: 1rem;
+
+$line-height-abs: $grid-size-abs * 2;
+$font-size-abs: $line-height-abs * 0.736;
+$line-height-rel: $grid-size-rel * 2;
+$font-size-rel: $line-height-rel * 0.736;
+
+$object-width: $grid-size-rel * 30;
+$object-padding: $grid-size-rel * 1.5;
+$object-padded-width: $object-width - $object-padding * 2;
+// $block-border-radius: $grid-size-rel * 2;
+// $block-color: $c-bg;
+// $block-hover-color: $c-bg;
+// $block-active-color: $c-bg;
+
+* {
+	// @include block-reset;
+	@include frame(transparentize($c-fg, 0.4));
+}
+
+html {
+	@include fill-fixed;
+	@include block-reset;
+	@include no-select;
+	@include text-size-adjust(100%);
+	@include text-rendering-optimize;
+	box-sizing: border-box;
+	-webkit-tap-highlight-color: hsla(0, 0%, 0%, 0);
+	font-size: $font-size-abs; /* to be overriden with js according to window width */ /* NOT */
+	body {
+		@include fill-fixed;
+		@include block-reset;
+		@include hardware-acceleration; /* will mess up draggable if applied to #viewport */
+		// background: $c-bg-default;
+		// cursor: $cursor-auto;
+	}
+	a, button {
+		// cursor: $cursor-pointer;
+		&:active {
+			// cursor: $cursor-pointer-clicked;
+		}
+	}
+	p {
+		font-family: Roboto;
+		font-style: normal;
+		font-weight: normal;
+		font-size: $font-size-rel;
+		line-height: $line-height-rel;
+		color: $c-fg;
+		margin: 0 0 $grid-size-rel 0;
+		&:last-child {
+			margin: 0;
+		}
+	}
+}
+
+#viewport {
+	@include fill-fixed;
+	@include block-reset;
+	overflow: visible;
+	#objects {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		margin: 0 auto;
+		padding: 0;
+		font-size: 0;
+		.object {
+			// left: random(49) + 20 + vw;
+			// top: random(1) + 20 + vh;
+			padding: $object-padding;
+			background: $c-bg;
+
+			// debugging
+			// position: absolute;
+			display: inline-block;
+
+			width: $object-padded-width;
+			cursor: pointer;
+			.block {
+				position: relative;
+				display: inline-block;
+				vertical-align: top;
+				&.image {
+					// width: $object-padded-width;
+					// padding: $object-padding;
+					img {
+						width: 100%;
+						height: 100%;
+						object-fit: cover;
+					}
+				}
+				&.name {
+					// padding: 0 $object-padding;
+					// display: none;
+					margin: $object-padding 0 $grid-size-rel 0;
+					p {
+						font-weight: bold;
+					}
+				}
+				&.definition {
+					// padding: 0 $object-padding $object-padding $object-padding;
+					// display: none;
+					// margin: 0 0 $grid-size-rel 0;
+				}
+			}
+		}
+	}
+}

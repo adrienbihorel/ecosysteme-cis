@@ -1,0 +1,26 @@
+// this comment to tell node sass to compile this scss file to css
+
+@import 'lib/fonts';
+@import 'lib/utilities';
+@import 'lib/colors';
+
+body {
+	background: $c-bg-default;
+	top: 0;
+	left: 0;
+	margin: 0;
+	padding: 0;
+	.wrapper {
+		position: absolute;
+		margin: 10vh;
+		height: calc(100vh - 2*10vh);
+		width: calc(100vw - 2*10vh);
+		iframe {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+		}
+	}
+}
