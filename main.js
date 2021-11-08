@@ -1,17 +1,20 @@
 const url = "https://docs.google.com/spreadsheets/d/16OcOCZUWMPCBlQYfzWNelGo_h8SMClCgDb7rGC_sf3g/export?format=csv";
-const objectsDiv = document.querySelector("#objects");
+// const objectsBackDiv = document.querySelector("#objects");
+const objectsBackDiv = document.querySelectorAll(".objects.back")[0];
+const objectsFrontDiv = document.querySelectorAll(".objects.front")[0];
+const textDiv = document.querySelectorAll(".sample-text")[0];
 
-// objectsDiv.innerHTML = "<p>Loading...</p>";
+// objectsBackDiv.innerHTML = "<p>Loading...</p>";
 
 fetch(url).then(result => result.text()).then(function(csvtext) {
   return csv().fromString(csvtext);
 }).then(function(csv) {
 
   // this works great
-  objectsDiv.innerHTML = "";
+  objectsBackDiv.innerHTML = "";
   // csv.forEach(function(object) {
-  // 	objectsDiv.innerHTML += "<p><strong>" + object.name + "</strong></p>";
-  // 	objectsDiv.innerHTML += "<p>" + object.definition + "</p>";
+  // 	objectsBackDiv.innerHTML += "<p><strong>" + object.name + "</strong></p>";
+  // 	objectsBackDiv.innerHTML += "<p>" + object.definition + "</p>";
   // });
 
   let objects = csv;
@@ -22,13 +25,11 @@ fetch(url).then(result => result.text()).then(function(csvtext) {
   let minOTDProp = 0.2;
   let maxOTDProp = 0.4;
 
-  function getOTDCount() {
+  function randIntWithinRange(min, max) {
     // return Math.floor(Math.random())
-    min = Math.ceil(minOTDProp * objects.length);
-    max = Math.floor(maxOTDProp * objects.length);
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
-  let OTDCount = getOTDCount();
+  let OTDCount = randIntWithinRange(Math.ceil(minOTDProp * objects.length), Math.floor(maxOTDProp * objects.length));
   // console.log("OTDCount = " + OTDCount);
 
   // Get OTD list
@@ -53,7 +54,7 @@ fetch(url).then(result => result.text()).then(function(csvtext) {
 
   OTDs.forEach(function(object) {
 
-    objectsDiv.innerHTML +=
+    objectsBackDiv.innerHTML +=
       '<div class="object">' +
       '<div class="block image">' + '<img class="" src="' + object.imageURL + '" alt="">' + '</div>' +
       '<div class="block name">' + '<p>' + object.name + '</p>' + '</div>' +
@@ -77,6 +78,9 @@ fetch(url).then(result => result.text()).then(function(csvtext) {
 
 
   function closeObjectDiv(div) {
+    if (div.parentNode == objectsFrontDiv) {
+      objectsBackDiv.appendChild(div);
+    }
     div.classList.remove('open');
     div.classList.add('closed');
 		div.style.zIndex = "";
@@ -94,8 +98,12 @@ fetch(url).then(result => result.text()).then(function(csvtext) {
   function openObjectDiv(div) {
     div.classList.remove('closed');
     div.classList.add('open');
-		div.style.zIndex = 1;
-		cover.style.display = "block";
+		div.style.zIndex = 1; /*not needed as we move div to another parent*/
+    objectsFrontDiv.appendChild(div);
+    // cover solution
+		// cover.style.display = "block";
+    // text div solution
+    textDiv.style.opacity = 0.5;
     let blocks = div.childNodes;
     blocks.forEach((block, i) => {
 			if (block.classList.contains("cover")) {
@@ -115,9 +123,57 @@ fetch(url).then(result => result.text()).then(function(csvtext) {
 		return  Math.round(number/nearest) * nearest;
 	}
 
+  let positions = [];
 	function randomPos(div) {
+    // ce qui marche
 		div.style.top = 50 + roundToNearest(5, (Math.random()-.5)*100*0.75) + "%";
 		div.style.left = 50 + roundToNearest(5, (Math.random()-.5)*100*0.75) + "%";
+
+
+    // ce que j'essaie de faire marcher
+    // units in %
+    // let spacePadding = 10;
+    // let divSide = 30;
+    // let thisPos = {};
+    // let hitsSomething = false;
+    //
+    // function calcPos() {
+    //   thisPos.x = randIntWithinRange(12.5, 87.5);
+    //   thisPos.y = randIntWithinRange(20, 70);
+    // }
+    //
+    // function testPos() {
+    //   hitsSomething = false;
+    //   for (var i = 0; i < positions.length; i++) {
+    //     let lowerXPos = positions[i].x-divSide/2;
+    //     let higherXPos = positions[i].x+divSide/2
+    //     let lowerYPos = positions[i].y-divSide/2;
+    //     let higherYPos = positions[i].y+divSide/2
+    //
+    //     if (lowerXPos <= thisPos.x && thisPos.x <= higherXPos
+    //     && lowerYPos <= thisPos.y && thisPos.y <= higherYPos) {
+    //       // console.log(lowerXPos + " <= " + thisPos.x + " <= " + higherXPos);
+    //       // console.log(lowerYPos + " <= " + thisPos.y + " <= " + higherYPos);
+    //       hitsSomething = true;
+    //       // return false;
+    //       console.log("Hit");
+    //     } else {
+    //       console.log("No hit");
+    //     }
+    //   }
+    //
+    // }
+    //
+    // calcPos();
+    // testPos();
+    // if (!hitsSomething) {
+    //   div.style.left = thisPos.x + "vw";
+    //   div.style.top = thisPos.y + "vh";
+    //   positions.push(thisPos);
+    // } else {
+    //   calcPos();
+    //   testPos();
+    // }
 	}
 
   for (var i = 0; i < objectDivs.length; i++) {
@@ -142,8 +198,11 @@ fetch(url).then(result => result.text()).then(function(csvtext) {
             // console.log("out");
 						closeObjectDiv(objectDiv);
 						removeClickListener();
-						if (e.target == objectsDiv) {
-							cover.style.display = "none";
+						if (e.target == objectsBackDiv) {
+              // cover solution
+							// cover.style.display = "none";
+              // text div solution
+              textDiv.style.opacity = 1;
 						}
           }
         }

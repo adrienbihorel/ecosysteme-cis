@@ -49,12 +49,22 @@ html p {
   font-weight: normal;
   font-size: 1.472rem;
   line-height: 2rem;
-  color: #333333;
+  color: #404040;
   margin: 0 0 1rem 0;
 }
 
 html p:last-child {
   margin: 0;
+}
+
+body .sample-text {
+  position: absolute;
+  padding: 15vh;
+}
+
+body .sample-text p {
+  font-size: 2.208rem;
+  line-height: 3rem;
 }
 
 #viewport {
@@ -74,10 +84,10 @@ html p:last-child {
   left: 0;
   height: 100%;
   width: 100%;
-  background: rgba(207, 217, 241, 0.5);
+  background: rgba(190, 202, 233, 0.5);
 }
 
-#viewport #objects {
+#viewport .objects {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -86,51 +96,57 @@ html p:last-child {
   font-size: 0;
 }
 
-#viewport #objects .object {
+#viewport .objects.back {
+  mix-blend-mode: normal;
+}
+
+#viewport .objects.back {
+  mix-blend-mode: multiply;
+}
+
+#viewport .objects .object {
   padding: 1.5rem;
-  background: #aebcdf;
+  background: #9faed5;
   width: 27rem;
   cursor: pointer;
   position: absolute;
-  top: 50%;
-  left: 50%;
   transform: translate(-50%, -50%);
 }
 
-#viewport #objects .object.open {
-  mix-blend-mode: normal;
+#viewport .objects .object:hover {
+  background: #d59fae;
 }
 
-#viewport #objects .object.closed {
-  mix-blend-mode: normal;
+#viewport .objects .object.open {
+  background: #9faed5;
 }
 
-#viewport #objects .object .block {
+#viewport .objects .object .block {
   position: relative;
   display: inline-block;
   vertical-align: top;
 }
 
-#viewport #objects .object .block.image img {
+#viewport .objects .object .block.image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-#viewport #objects .object .block.name {
+#viewport .objects .object .block.name {
   margin: 1.5rem 0 1rem 0;
 }
 
-#viewport #objects .object .block.name p {
+#viewport .objects .object .block.name p {
   font-weight: bold;
 }
 
-#viewport #objects .object .block.cover {
+#viewport .objects .object .block.cover {
   pointer-events: none !important;
   position: absolute;
   top: 0;
   left: 0;
   height: 100%;
   width: 100%;
-  background: rgba(174, 188, 223, 0.5);
+  background: rgba(190, 202, 233, 0.5);
 }

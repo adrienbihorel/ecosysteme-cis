@@ -4,7 +4,7 @@ html {
 }
 
 body {
-  background: #cfd9f1;
+  background: #becae9;
   top: 0;
   left: 0;
   margin: 0;
@@ -29,5 +29,4 @@ body .wrapper iframe {
   left: 0;
   width: 100%;
   height: 100%;
-  mix-blend-mode: multiply;
 }
