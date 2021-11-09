@@ -5,10 +5,10 @@ $c-actual-fg-default: #000;
 // $c-bg-default: adjust-color($c-actual-bg-default, $lightness: -10%, $saturation: -10%);
 // $c-fg-default: adjust-color($c-actual-fg-default, $lightness: +10%, $saturation: -10%);
 
-$c-bg-default: adjust-color($c-actual-bg-default, $lightness: -15%, $saturation: -15%);
-$c-fg-default: adjust-color($c-actual-fg-default, $lightness: +15%, $saturation: -15%);
+$c-bg-default: $c-actual-bg-default;
+$c-fg-default: $c-actual-fg-default;
 
 // $c-bg: #e7eaf3;
 $c-bg-darker-1: adjust-color($c-bg-default, $lightness: -20%, $saturation: -20%);
-$c-bg-darker-2: adjust-color($c-bg-default, $lightness: -10%, $saturation: -10%);
+$c-bg-darker-2: adjust-color($c-bg-default, $lightness: -10%, $saturation: -20%);
 $c-fg-lighter: adjust-color($c-fg-default, $lightness: +10%, $saturation: -10%);

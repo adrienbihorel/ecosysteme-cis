@@ -3,11 +3,12 @@ html {
   font-family: 'Roboto', sans-serif;
 }
 
+* {
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+}
+
 html {
-  position: fixed;
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
   top: 0;
   left: 0;
   padding: 0;
@@ -22,131 +23,121 @@ html {
   -moz-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
   text-size-adjust: 100%;
-  text-rendering: optimizeLegibility;
-  box-sizing: border-box;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  font-size: 7.36px;
-  /* to be overriden with js according to window width */
-  /* NOT */
 }
 
 html body {
-  position: fixed;
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
-  top: 0;
-  left: 0;
-  padding: 0;
-  margin: 0;
-  transform: translate3d(0, 0, 0);
-  /* will mess up draggable if applied to #viewport */
-}
-
-html p {
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 1.472rem;
-  line-height: 2rem;
-  color: #404040;
-  margin: 0 0 1rem 0;
-}
-
-html p:last-child {
-  margin: 0;
-}
-
-body .sample-text {
-  position: absolute;
-  padding: 15vh;
-}
-
-body .sample-text p {
-  font-size: 2.208rem;
-  line-height: 3rem;
-}
-
-#viewport {
-  position: fixed;
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
   top: 0;
   left: 0;
   padding: 0;
   margin: 0;
 }
 
-#viewport #cover {
-  position: absolute;
+html body #viewport {
   top: 0;
   left: 0;
-  height: 100%;
+  padding: 0;
+  margin: 0;
+  position: relative;
   width: 100%;
-  background: rgba(190, 202, 233, 0.5);
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 1em;
 }
 
-#viewport .objects {
+html body #viewport .sample-text {
+  max-width: 960px;
+  margin: 100px 0 150px 0;
+}
+
+html body #viewport .objects {
+  display: block;
   position: absolute;
-  width: 100%;
-  height: 100%;
   margin: 0 auto;
   padding: 0;
   font-size: 0;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
 }
 
-#viewport .objects.back {
+html body #viewport .objects.back {
   mix-blend-mode: normal;
 }
 
-#viewport .objects.back {
+html body #viewport .objects.back {
   mix-blend-mode: multiply;
 }
 
-#viewport .objects .object {
-  padding: 1.5rem;
-  background: #9faed5;
-  width: 27rem;
+html body #viewport .objects .object {
+  padding: 0.75rem;
+  background: #d2daee;
+  width: 13.5rem;
   cursor: pointer;
   position: absolute;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, 0%);
 }
 
-#viewport .objects .object:hover {
-  background: #d59fae;
+html body #viewport .objects .object:hover {
+  background: #eed2da;
 }
 
-#viewport .objects .object.open {
-  background: #9faed5;
+html body #viewport .objects .object.open {
+  background: #d2daee;
 }
 
-#viewport .objects .object .block {
+html body #viewport .objects .object .block {
   position: relative;
   display: inline-block;
   vertical-align: top;
 }
 
-#viewport .objects .object .block.image img {
+html body #viewport .objects .object .block.image {
+  width: 13.5rem;
+  height: 10.125rem;
+}
+
+html body #viewport .objects .object .block.image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-#viewport .objects .object .block.name {
-  margin: 1.5rem 0 1rem 0;
+html body #viewport .objects .object .block.name {
+  margin: 0.75rem 0 0.5rem;
 }
 
-#viewport .objects .object .block.name p {
+html body #viewport .objects .object .block.name p {
   font-weight: bold;
 }
 
-#viewport .objects .object .block.cover {
+html body #viewport .objects .object .block.cover {
   pointer-events: none !important;
   position: absolute;
   top: 0;
   left: 0;
   height: 100%;
   width: 100%;
-  background: rgba(190, 202, 233, 0.5);
+  background: rgba(255, 255, 255, 0.5);
+}
+
+html body #viewport .objects .object .block p {
+  font-size: 0.736rem;
+  line-height: 1rem;
+  color: #1a1a1a;
+  margin: 0 0 0.5rem;
+}
+
+@media only screen and (max-width: 768px) {
+  .objects {
+    display: none !important;
+  }
 }

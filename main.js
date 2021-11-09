@@ -26,10 +26,11 @@ fetch(url).then(result => result.text()).then(function(csvtext) {
   let maxOTDProp = 0.4;
 
   function randIntWithinRange(min, max) {
-    // return Math.floor(Math.random())
+    min = Math.ceil(min);
+    max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
-  let OTDCount = randIntWithinRange(Math.ceil(minOTDProp * objects.length), Math.floor(maxOTDProp * objects.length));
+  let OTDCount = randIntWithinRange(minOTDProp * objects.length, maxOTDProp * objects.length);
   // console.log("OTDCount = " + OTDCount);
 
   // Get OTD list
@@ -92,7 +93,7 @@ fetch(url).then(result => result.text()).then(function(csvtext) {
         block.style.display = "none";
       }
     });
-    console.log(div);
+    // console.log(div);
   }
 
   function openObjectDiv(div) {
@@ -112,7 +113,7 @@ fetch(url).then(result => result.text()).then(function(csvtext) {
         block.style.display = "block";
       }
     });
-    console.log(div);
+    // console.log(div);
   }
 
   // function defaultZIndex(div) {
@@ -125,56 +126,56 @@ fetch(url).then(result => result.text()).then(function(csvtext) {
 
   let positions = [];
 	function randomPos(div) {
-    // ce qui marche
-		div.style.top = 50 + roundToNearest(5, (Math.random()-.5)*100*0.75) + "%";
-		div.style.left = 50 + roundToNearest(5, (Math.random()-.5)*100*0.75) + "%";
+    // simple version
+		// div.style.top = 50 + roundToNearest(5, (Math.random()-.5)*100*0.75) + "%";
+		// div.style.left = 50 + roundToNearest(5, (Math.random()-.5)*100*0.75) + "%";
 
+    // complex version
+    let divSide = 30;
+    let thisPos = {};
+    let hitsSomething = false;
 
-    // ce que j'essaie de faire marcher
-    // units in %
-    // let spacePadding = 10;
-    // let divSide = 30;
-    // let thisPos = {};
-    // let hitsSomething = false;
-    //
-    // function calcPos() {
-    //   thisPos.x = randIntWithinRange(12.5, 87.5);
-    //   thisPos.y = randIntWithinRange(20, 70);
-    // }
-    //
-    // function testPos() {
-    //   hitsSomething = false;
-    //   for (var i = 0; i < positions.length; i++) {
-    //     let lowerXPos = positions[i].x-divSide/2;
-    //     let higherXPos = positions[i].x+divSide/2
-    //     let lowerYPos = positions[i].y-divSide/2;
-    //     let higherYPos = positions[i].y+divSide/2
-    //
-    //     if (lowerXPos <= thisPos.x && thisPos.x <= higherXPos
-    //     && lowerYPos <= thisPos.y && thisPos.y <= higherYPos) {
-    //       // console.log(lowerXPos + " <= " + thisPos.x + " <= " + higherXPos);
-    //       // console.log(lowerYPos + " <= " + thisPos.y + " <= " + higherYPos);
-    //       hitsSomething = true;
-    //       // return false;
-    //       console.log("Hit");
-    //     } else {
-    //       console.log("No hit");
-    //     }
-    //   }
-    //
-    // }
-    //
-    // calcPos();
-    // testPos();
-    // if (!hitsSomething) {
-    //   div.style.left = thisPos.x + "vw";
-    //   div.style.top = thisPos.y + "vh";
-    //   positions.push(thisPos);
-    // } else {
-    //   calcPos();
-    //   testPos();
-    // }
-	}
+    function calcPos() {
+      thisPos.x = randIntWithinRange(15, 85);
+      thisPos.y = randIntWithinRange(5, 60);
+    }
+
+    function testPos() {
+      hitsSomething = false;
+      for (var i = 0; i < positions.length; i++) {
+        let lowerXPos = positions[i].x-divSide/2;
+        let higherXPos = positions[i].x+divSide/2
+        let lowerYPos = positions[i].y-divSide/2;
+        let higherYPos = positions[i].y+divSide/2
+
+        if (lowerXPos <= thisPos.x && thisPos.x <= higherXPos
+        && lowerYPos <= thisPos.y && thisPos.y <= higherYPos) {
+          // console.log(lowerXPos + " <= " + thisPos.x + " <= " + higherXPos);
+          // console.log(lowerYPos + " <= " + thisPos.y + " <= " + higherYPos);
+          hitsSomething = true;
+          // console.log("Hit");
+          break;
+        } else {
+          // console.log("No hit");
+        }
+      }
+    }
+
+    var foundSpace = false;
+    var currStep = 0;
+    while (!foundSpace) {
+      // console.log("Trying to find space for " + div + "for the time #:" + currStep);
+      currStep++;
+      calcPos();
+      testPos();
+      if (!hitsSomething || currStep > 20) {
+        foundSpace = true;
+        div.style.left = thisPos.x + "%";
+        div.style.top = thisPos.y + "%";
+        positions.push(thisPos);
+      }
+    }
+  }
 
   for (var i = 0; i < objectDivs.length; i++) {
     let objectDiv = objectDivs[i];

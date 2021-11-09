@@ -1,22 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>host page</title>
-	<link href="styles/host.css" rel="stylesheet">
+	<title>ecosysteme-cis</title>
+
+	<link rel='stylesheet' id='wp-block-library-css'  href='https://cis.cnrs.fr/wp-includes/css/dist/block-library/style.min.css?ver=5.8.1' type='text/css' media='all' />
+	<link rel='stylesheet' id='fontawesome-free-css'  href='https://cis.cnrs.fr/wp-content/plugins/getwid/vendors/fontawesome-free/css/all.min.css?ver=5.5.0' type='text/css' media='all' />
+	<link rel='stylesheet' id='slick-css'  href='https://cis.cnrs.fr/wp-content/plugins/getwid/vendors/slick/slick/slick.min.css?ver=1.9.0' type='text/css' media='all' />
+	<link rel='stylesheet' id='slick-theme-css'  href='https://cis.cnrs.fr/wp-content/plugins/getwid/vendors/slick/slick/slick-theme.min.css?ver=1.9.0' type='text/css' media='all' />
+	<link rel='stylesheet' id='fancybox-css'  href='https://cis.cnrs.fr/wp-content/plugins/getwid/vendors/fancybox/jquery.fancybox.min.css?ver=3.5.7' type='text/css' media='all' />
+	<link rel='stylesheet' id='getwid-blocks-css'  href='https://cis.cnrs.fr/wp-content/plugins/getwid/assets/css/blocks.style.css?ver=1.7.7' type='text/css' media='all' />
+	<style id='getwid-blocks-inline-css' type='text/css'>	.wp-block-getwid-section .wp-block-getwid-section__wrapper .wp-block-getwid-section__inner-wrapper{max-width: 960px;}</style>
+	<link rel='stylesheet' id='contact-form-7-css'  href='https://cis.cnrs.fr/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=5.5.2' type='text/css' media='all' />
+	<link rel='stylesheet' id='bodhi-svgs-attachment-css'  href='https://cis.cnrs.fr/wp-content/plugins/svg-support/css/svgs-attachment.css?ver=5.8.1' type='text/css' media='all' />
+	<link rel='stylesheet' id='parent-style-css'  href='https://cis.cnrs.fr/wp-content/themes/getwid-base/style.css?ver=5.8.1' type='text/css' media='all' />
+	<link rel='stylesheet' id='linearicons-free-css'  href='https://cis.cnrs.fr/wp-content/themes/getwid-base/assets/linearicons/style.css?ver=1.0.0' type='text/css' media='all' />
+	<link rel='stylesheet' id='getwid-base-fonts-css'  href='https://fonts.googleapis.com/css?family=Work+Sans%3A400%2C500%2C700%7CPT+Serif%3A+400%2C400i%2C700%2C700i&#038;subset=latin%2Clatin-ext%2Ccyrillic' type='text/css' media='all' />
+	<link rel='stylesheet' id='getwid-base-style-css'  href='https://cis.cnrs.fr/wp-content/themes/getwid-cis/style.css?ver=1.1.3' type='text/css' media='all' />
+
+	<link rel="stylesheet" href="styles/main.css">
+	<script src="https://cdn.rawgit.com/Keyang/node-csvtojson/d41f44aa/browser/csvtojson.min.js"></script>
 </head>
+
 <body>
-	<!-- <div class="sample-text">
-		<p>La notion d’écosystème s’est imposé au cours des dernières années comme un terme de sens commun pour désigner l’ensemble des outils, entreprises et foyers de productions des technologies numériques. Or ce terme tend à naturaliser les rapports de force, en même temps qu’il occulte les processus historiques ayant conduit certains acteurs et systèmes à des positions dominantes. Ce faisant, il tend à rendre peu visibles les alternatives historiques, et la variabilité des valeurs attachées aux outils numériques en fonction des territoires.</p>
-		<p>Elle fait par ailleurs l’économie d’une recension précise des actants et du type d’interactions qu’ils entretiennent, liant humains, non-humains, protocoles, codes, interfaces, infrastructures, normes juridiques, eux-mêmes regroupés en différentes communautés de pratiques – design, makers, etc.-, outils – langages de programmation, systèmes d’exploitation, etc. – moralement polarisées (privatisation, défense des communs, défense de la vie privée, etc.).</p>
-		<p>Ce séminaire a vocation a proposé une cartographie de cet « écosystème » en mettant en lumière « les hasards et les nécessités » du numérique (pour voler à la biologie un autre expression célèbre), c’est-à-dire la tension entre les pouvoirs d'influence et gouvernance exercés par les infrastructures et les grands acteurs (publiques et privés) et les dynamiques inattendues produites par les interférences parmi les multiples composantes de l’écosystème du numérique.</p>
-	</div> -->
-	<div class="wrapper">
-		<!-- <iframe src="http://adrienbihorel.net/ressources-site-m2r/main/main.html" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen> -->
-		<iframe src="main.html" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
-		</iframe>
+	<div id="viewport">
+		<div class="wp-block-columns sample-text">
+			<div class="wp-block-column">
+				<p>La notion d’écosystème s’est imposé au cours des dernières années comme un terme de sens commun pour désigner l’ensemble des outils, entreprises et foyers de productions des technologies numériques. Or ce terme tend à naturaliser les rapports de force, en même temps qu’il occulte les processus historiques ayant conduit certains acteurs et systèmes à des positions dominantes. Ce faisant, il tend à rendre peu visibles les alternatives historiques, et la variabilité des valeurs attachées aux outils numériques en fonction des territoires.</p>
+			</div>
+			<div class="wp-block-column">
+				<p>Elle fait par ailleurs l’économie d’une recension précise des actants et du type d’interactions qu’ils entretiennent, liant humains, non-humains, protocoles, codes, interfaces, infrastructures, normes juridiques, eux-mêmes regroupés en différentes communautés de pratiques – design, makers, etc.-, outils – langages de programmation, systèmes d’exploitation, etc. – moralement polarisées (privatisation, défense des communs, défense de la vie privée, etc.).</p>
+			</div>
+			<div class="wp-block-column">
+				<p>Ce séminaire a vocation a proposé une cartographie de cet « écosystème » en mettant en lumière « les hasards et les nécessités » du numérique (pour voler à la biologie un autre expression célèbre), c’est-à-dire la tension entre les pouvoirs d'influence et gouvernance exercés par les infrastructures et les grands acteurs (publiques et privés) et les dynamiques inattendues produites par les interférences parmi les multiples composantes de l’écosystème du numérique.</p>
+			</div>
+		</div>
+		<div class="objects front"></div>
+		<div class="objects back"></div>
 	</div>
+
+	<script src="main.js" charset="utf-8"></script>
 </body>
+
 </html>
