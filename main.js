@@ -137,7 +137,7 @@ fetch(url).then(result => result.text()).then(function(csvtext) {
 
     function calcPos() {
       thisPos.x = randIntWithinRange(15, 85);
-      thisPos.y = randIntWithinRange(5, 60);
+      thisPos.y = randIntWithinRange(5, 50);
     }
 
     function testPos() {

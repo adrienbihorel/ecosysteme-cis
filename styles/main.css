@@ -38,23 +38,7 @@ html body #viewport {
   padding: 0;
   margin: 0;
   position: relative;
-  width: 100%;
-  -webkit-box-align: start;
-  -ms-flex-align: start;
-  align-items: flex-start;
-  display: flex;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  padding: 1em;
-}
-
-html body #viewport .sample-text {
-  max-width: 960px;
-  margin: 100px 0 150px 0;
+  padding: 6em 1em 10em 1em;
 }
 
 html body #viewport .objects {
@@ -136,8 +120,90 @@ html body #viewport .objects .object .block p {
   margin: 0 0 0.5rem;
 }
 
-@media only screen and (max-width: 768px) {
+@media (max-width: 768px) {
   .objects {
     display: none !important;
+  }
+}
+
+.container {
+  display: flex;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.columns {
+  display: flex;
+  margin-bottom: 1.75em;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+  max-width: 960px;
+}
+
+.column {
+  -webkit-box-flex: 1;
+  flex-grow: 1;
+  min-width: 0;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  margin-left: 0;
+  margin-bottom: 1em;
+}
+
+.column:nth-child(odd) {
+  margin-right: 0;
+}
+
+.column:not(:first-child),
+.column:nth-child(2n) {
+  margin-left: 0;
+}
+
+.column:nth-child(odd) {
+  margin-right: 0;
+}
+
+.column:not(:first-child),
+.column:nth-child(2n) {
+  margin-left: 0;
+}
+
+.column:not(:last-child) {
+  margin-right: 0;
+}
+
+.column > * {
+  margin-bottom: 1em;
+}
+
+.column > *:last-child {
+  margin-bottom: 0;
+}
+
+@media (min-width: 768px) {
+  .columns {
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+  }
+  .column {
+    -ms-flex-preferred-size: 50%;
+    flex-basis: 50%;
+    -webkit-box-flex: 0;
+    -ms-flex-positive: 0;
+    flex-grow: 0;
+  }
+  .column:not(:first-child),
+  .column:nth-child(2n) {
+    margin-left: 20px;
+  }
+  .column:not(:last-child) {
+    margin-right: 20px;
   }
 }
